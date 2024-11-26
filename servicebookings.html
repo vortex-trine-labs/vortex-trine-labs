@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Service Booking - Vortex Trine Labs</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      --heading-font: "Raleway", sans-serif;
+      --nav-font: "Poppins", sans-serif;
+      --background-color: #ffffff;
+      --default-color: #444444;
+      --heading-color: #040677;
+      --accent-color: #1acc8d;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+    }
+
+    body {
+      color: var(--default-color);
+      background-color: #040677;
+      font-family: var(--default-font);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: var(--surface-color);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: var(--heading-color);
+      font-family: var(--heading-font);
+      text-align: center;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    .referral-inputs input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    form button {
+      padding: 10px 20px;
+      border: none;
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%; /* Ensures the button fits the container */
+    }
+
+    form button:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 25%);
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .links a {
+      color: var(--accent-color);
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-group .btn {
+      width: 100%;
+    }
+
+    .footer-top {
+      margin-top: 50px;
+    }
+
+    .footer-top .d-flex {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-link {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Service Booking Form</h1>
+    <form action="process_servicebookings.php" method="POST" onsubmit="return validateForm();">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="number">Contact Number:</label>
+      <input type="tel" id="number" name="number" pattern="[0-9]{10}" required>
+
+      <label for="organization">Organization Type:</label>
+      <select id="organization" name="organization" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Student">Student</option>
+        <option value="Company">Company</option>
+        <option value="Startup">Startup</option>
+        <option value="Individual">Individual</option>
+      </select>
+
+      <label for="need">Need:</label>
+      <select id="need" name="need" required>
+        <option value="" disabled selected>Select</option>
+        <option value="College Project">College Project</option>
+        <option value="Web Application (Static)">Web Application (Static)</option>
+        <option value="Web Application (Dynamic)">Web Application (Dynamic)</option>
+        <option value="Mobile Application">Mobile Application</option>
+        <option value="E-Commerce Website">E-Commerce Website</option>
+        <option value="Portfolio">Portfolio</option>
+      </select>
+
+      <label for="description">Project Description:</label>
+      <textarea id="description" name="description" rows="5" placeholder="Provide a detailed description of the project."></textarea>
+
+      <label for="referral">Referral Code (Optional):</label>
+      <input type="text" id="referral" name="referral" maxlength="5" pattern=".{5}" placeholder="Enter 5 characters" title="Enter any 5 characters (numbers, text, or special characters)">
+
+      <label for="deadline">Project Deadline:</label>
+      <input type="date" id="deadline" name="deadline" required>
+
+      <label for="budget">Budget (in ₹):</label>
+      <input type="number" id="budget" name="budget" min="0" required>
+
+      <button type="submit" class="btn btn-success" style="background-color: green; color: white;">Submit Request</button>
+    </form>
+
+    <div class="links">
+      <div class="btn-group">
+        <button class="btn btn-danger" style="background-color: red; color: white;" onclick="window.location.href='index.html'">Back to Home</button>
+        <button class="btn btn-primary" style="background-color: blue; color: white;" onclick="window.location.href='service_tracking.php'">Track Request</button>
+      </div>
+    </div>
+    <div class="footer-top">
+        <div class="d-flex justify-content-center align-items-center py-3">
+          <div class="d-flex align-items-center">
+            <a href="https://www.instagram.com/vortex_trine_labs/" class="social-icon me-2"><i class="bi bi-instagram"></i></a>
+            <span class="text-black">Vortex Trine Labs - "Innovating Your Ideas, One Step at a Time"</span>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
